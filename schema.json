@@ -8,7 +8,7 @@
             "columns" : ["First_name", "Last_name", "id", "Seat", "Phone", 
             "Passport_no", "Gender", "Birth_date", "Flight_id"],
             "primary_key"  : "id",
-            "Index_keys" : ["name"],
+            "Index_keys" : ["First_name", "Last_name"],
             "Consistency" : "Eventual"
         },
         {
@@ -16,14 +16,13 @@
             "columns" : ["Flight_id", "Plane_id", "From", "To", "Stops", "Airline name", 
             "Departure time", "Departure date", "Flight duration"],
             "primary_key"  : "Flight_id",
-            "Index_keys" : ["name"],
+            "Index_keys" : ["From", "To", "Stops", "Airline name"],
             "Consistency" : "Eventual"
         },
         {
             "name" : "Planes Details",
             "columns" : ["Plane_id", "Plane type", "Seat map"],
             "primary_key"  : "Plane_id",
-            "Index_keys" : ["name"],
             "Consistency" : "Eventual"
         },
         {
