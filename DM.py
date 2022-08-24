@@ -1,5 +1,5 @@
 import argparse
-import json
+import json, ast
 import os
 
 def parse_args():
@@ -35,7 +35,7 @@ def parse_args():
     )
     parser.add_argument(
         "-pk",
-        "--primary-key",
+        "--primary_key",
         type=str,
         help="Primary key is a unique key",
     )
@@ -64,12 +64,25 @@ def set(db, table, value):
     dictionary = {}
     for i in range(0, len(s)-1, 2):
         dictionary[s[i]] = s[i+1]
-    id = s[1]
+        if(s[i] == "id"):
+            id = s[i+1]
+
     data = json.dumps(dictionary, indent=4)
     with open(db + "/" + table + "/" + id + ".json", "w") as outfile:
         outfile.write(data)
-    print(value, s)
 
+def get(db, table, pk, value):
+    f = open(db + "/" + table + "/" + pk + ".json", "r")
+    data = json.load(f)
+    data = ast.literal_eval(json.dumps(data))
+    s = value.split(" ")
+    if value == None:
+        print(data)
+    else:
+        dic = {}
+        for i in s:
+            dic[i] = data[i]
+        print(dic)
 
 if(args.command == "CREATE"): 
    create(args.schema)
@@ -77,8 +90,8 @@ if(args.command == "CREATE"):
 if(args.command == "SET"):
    set(args.database, args.table, args.value)
 
-#if(args.command == "GET"):
- #   get(args.db, args.t, args.pk, args.v)
+if(args.command == "GET"):
+   get(args.database, args.table, args.primary_key, args.value)
 
 #if(args.command == "DELETE"):
  #   delete(args.db, args.t, args.pk, args.v)
