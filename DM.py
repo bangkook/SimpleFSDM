@@ -75,15 +75,36 @@ def get(db, table, pk, value):
     f = open(db + "/" + table + "/" + pk + ".json", "r")
     data = json.load(f)
     data = ast.literal_eval(json.dumps(data))
-    s = value.split(" ")
+    
     if value == None:
         print(data)
     else:
+        s = value.split(" ")
         dic = {}
         for i in s:
             dic[i] = data[i]
         print(dic)
 
+def delete(db, table, pk, value):
+    path = parent_dir + db + "/" + table + "/" + pk + ".json"
+
+    if not os.path.exists(path):
+        print("primary key does not exist")
+
+    elif value == None:
+        os.remove(path)
+    
+    else:
+        s = value.split(" ")
+
+        with open(db + "/" + table + "/" + pk + ".json", "r") as f:
+            data = json.load(f)
+        for w in s:
+            del data[w]
+
+        with open(db + "/" + table + "/" + pk + ".json", "w") as f:
+            json.dump(data, f, indent=4)
+    
 if(args.command == "CREATE"): 
    create(args.schema)
 
@@ -93,6 +114,6 @@ if(args.command == "SET"):
 if(args.command == "GET"):
    get(args.database, args.table, args.primary_key, args.value)
 
-#if(args.command == "DELETE"):
- #   delete(args.db, args.t, args.pk, args.v)
+if(args.command == "DELETE"):
+   delete(args.database, args.table, args.primary_key, args.value)
 
