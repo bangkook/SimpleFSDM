@@ -43,7 +43,7 @@ def parse_args():
 
 args = parse_args()
 
-parent_dir = "C:/Users/cyber/Desktop/SimpleFSDM/"
+parent_dir = os. getcwd() 
 
 def create(schema):
     f = open(schema, "r")
@@ -55,21 +55,28 @@ def create(schema):
         t_path = os.path.join(path, i['name'])
         os.mkdir(t_path)
 
-def set(db, table, value):
+def set(db, table, pk, value):
+    if pk == None:
+        return "Primary Key is Missing"
+
     disallowed_characters = "{\":},"
     for character in disallowed_characters:
 	    value = value.replace(character, "")
     s = value.split(" ")
     
+    path = parent_dir + "/" + db + "/" + table + "/" + pk + ".json"
+
+    if os.path.exists(path):
+        return "Item Exists With Same PK"
+
     dictionary = {}
     for i in range(0, len(s)-1, 2):
         dictionary[s[i]] = s[i+1]
-        if(s[i] == "id"):
-            id = s[i+1]
 
     data = json.dumps(dictionary, indent=4)
-    with open(db + "/" + table + "/" + id + ".json", "w") as outfile:
+    with open(path, "w") as outfile:
         outfile.write(data)
+    return "Successfully set"
 
 def get(db, table, pk, value):
     f = open(db + "/" + table + "/" + pk + ".json", "r")
@@ -109,7 +116,7 @@ if(args.command == "CREATE"):
    create(args.schema)
 
 if(args.command == "SET"):
-   set(args.database, args.table, args.value)
+   print(set(args.database, args.table, args.primary_key, args.value))
 
 if(args.command == "GET"):
    get(args.database, args.table, args.primary_key, args.value)
