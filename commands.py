@@ -8,14 +8,19 @@ def create(schema):
     data = json.load(f)
     dir = data['database_name']
     path = os.path.join(parent_dir, dir)
+
+    if(os.path.exists(path)):
+        raise Exception("DatabaseExistsWithSameName")
+
     os.mkdir(path)
     for i in data['Tables']:
         t_path = os.path.join(path, i['name'])
         os.mkdir(t_path)
 
+
 def set(db, table, pk, value):
     if pk == None:
-        return "Primary Key is Missing"
+        raise Exception("PrimaryKeyIsMissing")
 
     disallowed_characters = "{\":},"
     for character in disallowed_characters:
@@ -25,7 +30,7 @@ def set(db, table, pk, value):
     path = parent_dir + "/" + db + "/" + table + "/" + pk + ".json"
 
     if os.path.exists(path):
-        return "Item Exists With Same PK"
+        raise Exception("ItemExistsWithSamePK")
 
     dictionary = {}
     for i in range(0, len(s)-1, 2):
@@ -34,37 +39,26 @@ def set(db, table, pk, value):
     data = json.dumps(dictionary, indent=4)
     with open(path, "w") as outfile:
         outfile.write(data)
-    return "Successfully set"
+
 
 def get(db, table, pk, value):
     path = parent_dir + "/" + db + "/" + table + "/" + pk + ".json"
 
     if not os.path.exists(path):
-        return "Primary key does not exist"
+        raise Exception("PrimaryKeyNotFound")
 
     if pk == None:
-        return "Primary Key is missing"
+        raise Exception("PrimaryKeyIsMissing")
 
     f = open(path,  "r")
     data = json.load(f)
-    return(ast.literal_eval(json.dumps(data)))  
+    print(ast.literal_eval(json.dumps(data)))  
+
 
 def delete(db, table, pk, value):
     path = parent_dir + "/" + db + "/" + table + "/" + pk + ".json"
 
     if not os.path.exists(path):
-        print("primary key does not exist")
+        raise Exception("PrimaryKeyNotFound")
 
-    elif value == None:
-        os.remove(path)
-    
-    else:
-        s = value.split(" ")
-
-        with open(db + "/" + table + "/" + pk + ".json", "r") as f:
-            data = json.load(f)
-        for w in s:
-            del data[w]
-
-        with open(db + "/" + table + "/" + pk + ".json", "w") as f:
-            json.dump(data, f, indent=4)
+    os.remove(path)  
