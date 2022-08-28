@@ -1,22 +1,41 @@
+from SchemaKeys import SchemaKeys
 import json, ast
 import os
 
 parent_dir = os. getcwd() 
 
-def create(schema):
-    f = open(schema, "r")
-    data = json.load(f)
-    dir = data['database_name']
-    path = os.path.join(parent_dir, dir)
+class ICommand():
+    def execute(self):
+        pass
 
-    if(os.path.exists(path)):
-        raise Exception("DatabaseExistsWithSameName")
+class CreateCommand(ICommand):
+    def __init__(self, schema):
+        self._schema = schema
 
-    os.mkdir(path)
-    for i in data['Tables']:
-        t_path = os.path.join(path, i['name'])
-        os.mkdir(t_path)
+    def execute(self):
+        f = open(self._schema, "r")
+        data = json.load(f)
+        dir = data[SchemaKeys().DATABASE]
+        path = os.path.join(parent_dir, dir)
 
+        if not (os.path.exists(path)):
+            os.mkdir(path)
+
+        for table in data[SchemaKeys().TABLES]:
+            t_path = os.path.join(path, table[SchemaKeys().NAME])
+            if not (os.path.exists(t_path)):
+                os.mkdir(t_path)
+
+class CommandFactory:
+    def create(self, args):
+        cmd = args.command.lower()
+        if (cmd == "create"):
+            CreateCommand(args.schema).execute()
+
+
+
+# -------------------------------------------------------------------------------------------------------
+# ignore the rest of the code, still in progress
 
 def create_raw(db, table, pk):
     path = parent_dir + "/" + db + "/" + table + "/" + pk + ".json"

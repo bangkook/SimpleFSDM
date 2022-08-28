@@ -12,7 +12,7 @@
             "Consistency" : "Eventual"
         },
         {
-            "name" : "Flights Details",
+            "name" : "Flights_Details",
             "columns" : ["Flight_id", "Plane_id", "From", "To", "Stops", "Airline name", 
             "Departure time", "Departure date", "Flight duration"],
             "primary_key"  : "Flight_id",
@@ -20,7 +20,7 @@
             "Consistency" : "Eventual"
         },
         {
-            "name" : "Planes Details",
+            "name" : "Planes_Details",
             "columns" : ["Plane_id", "Plane type", "Seat map"],
             "primary_key"  : "Plane_id",
             "Consistency" : "Eventual"
