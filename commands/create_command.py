@@ -12,12 +12,18 @@ class CreateCommand(ICommand):
     def execute(self):
         if (self.schema == None or not os.path.exists(os.path.join(parent_dir, self.schema))):
             raise Exception("FileNotFound")
-
+        
+        if not SchemaKeys().DATABASE in self.data:
+            raise Exception("DatabaseNameIsMissing")
+            
         dir = self.data[SchemaKeys().DATABASE]
         path = os.path.join(parent_dir, dir)
         
         os.makedirs(path, exist_ok = True)
-
-        for table in data[SchemaKeys().TABLES]:
+        
+        if not SchemaKeys().TABLES in self.data:
+            return
+        
+        for table in self.data[SchemaKeys().TABLES]:
             t_path = os.path.join(path, table[SchemaKeys().NAME])
             os.makedirs(t_path, exist_ok = True)
