@@ -6,21 +6,18 @@ from SchemaKeys import SchemaKeys
 
 class CreateCommand(ICommand):
     def __init__(self, schema):
-        self._schema = schema
+        self.schema = schema
+        self.data = json.load(open(schema, "r"))
 
     def execute(self):
-        if (self._schema == None or not os.path.exists(parent_dir + "/" + self._schema)):
+        if (self.schema == None or not os.path.exists(os.path.join(parent_dir, self.schema))):
             raise Exception("FileNotFound")
 
-        schema_file = open(self._schema, "r")
-        data = json.load(schema_file)
-        dir = data[SchemaKeys().DATABASE]
+        dir = self.data[SchemaKeys().DATABASE]
         path = os.path.join(parent_dir, dir)
-
-        if not os.path.exists(path):
-            os.mkdir(path)
+        
+        os.makedirs(path, exist_ok = True)
 
         for table in data[SchemaKeys().TABLES]:
             t_path = os.path.join(path, table[SchemaKeys().NAME])
-            if not os.path.exists(t_path):
-                os.mkdir(t_path)
+            os.makedirs(t_path, exist_ok = True)
