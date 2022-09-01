@@ -1,4 +1,6 @@
-class SchemaKeys:
+from abc import ABC
+
+class SchemaKeys(ABC):
     TABLES = "Tables"
     DATABASE = "database_name"
     NAME = "name"
