@@ -7,8 +7,7 @@ from SchemaKeys import SchemaKeys
 sys.path.append(os.path.join(root_dir, "commands"))
 from create_command import CreateCommand
 
-parent_dir = os. getcwd()
-schema = "schema.json"
+schema = os.path.join(root_dir, "schema.json")
 
 class Test_TestCommands(unittest.TestCase):
     def test_wrong_input(self):
@@ -20,29 +19,29 @@ class Test_TestCommands(unittest.TestCase):
 
     def test_create_database(self):
         db_name = "Check-in"
-        db_path = parent_dir + "/" + db_name
+        db_path = root_dir + "/" + db_name
         self.assertEqual(os.path.exists(db_path), True)
         
     def test_create_tables(self):
         db_name = "Check-in"
         for table in json.load(open(schema, "r"))[SchemaKeys.TABLES]:
-            table_path = parent_dir + "/" + db_name + "/" + table[SchemaKeys.NAME]
+            table_path = root_dir + "/" + db_name + "/" + table[SchemaKeys.NAME]
             self.assertEqual(os.path.exists(table_path), True)
 
     def test_wrong_db_name(self):
         db_name = "Check"
         table = "Flights_Details"
-        t_path = parent_dir + "/" + db_name + "/" + table
+        t_path = root_dir + "/" + db_name + "/" + table
         self.assertEqual(os.path.exists(t_path), False)
 
     def test_create_multiple_time(self):
         db_name = "Check-in"
-        db_path = parent_dir + "/" + db_name
+        db_path = root_dir + "/" + db_name
         for i in range(3):
             CreateCommand(schema).execute()
             self.assertEqual(os.path.exists(db_path), True)
     
 
 if __name__ == '__main__':
-    CreateCommand(schema).execute()
+    CreateCommand(schema)
     unittest.main()

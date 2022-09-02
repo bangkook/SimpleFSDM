@@ -9,7 +9,7 @@ def parse_args():
     )
     parser.add_argument(
         "-sc",
-        "--schema",
+        "--schema_path",
         type=str,
         help="This is the database schema, it is a json object.",
     )
