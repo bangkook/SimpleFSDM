@@ -4,4 +4,4 @@ class CommandFactory:
     def create(self, args):
         cmd = args.command.lower()
         if (cmd == "create"):
-            CreateCommand(args.schema_path)
+            return CreateCommand(args.schema_path)

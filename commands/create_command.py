@@ -7,10 +7,9 @@ from SchemaKeys import SchemaKeys
 class CreateCommand(ICommand):
     def __init__(self, schema_path):
         self.__validate_and_load_schema(schema_path)
-        self.execute()
 
     def __validate_and_load_schema(self, schema_path):
-        if (schema_path== None or not os.path.exists(os.path.join(parent_dir, schema_path))):
+        if (schema_path == None or not os.path.exists(os.path.join(parent_dir, schema_path))):
             raise Exception("FileNotFound")
 
         try:  
@@ -24,6 +23,7 @@ class CreateCommand(ICommand):
     def execute(self):    
         self.__create_database()
         self.__create_tables()
+        return "Succefully executed create command"
 
     def __create_database(self):
         dir = self.data[SchemaKeys.DATABASE]
