@@ -1,4 +1,4 @@
-from create_command import CreateCommand
+from commands.create_command import CreateCommand
 
 class CommandFactory:
     def create(self, args):
