@@ -18,7 +18,8 @@ class Test_TestCommands(unittest.TestCase):
 
     def test_create_database(self):
         db_name = "Check-in"
-        db_path = root_dir + "/" + db_name
+        db_path = os.path.join(root_dir, db_name)
+        print(db_path)
         self.assertEqual(os.path.exists(db_path), True)
         
     def test_create_tables(self):
@@ -42,5 +43,5 @@ class Test_TestCommands(unittest.TestCase):
     
 
 if __name__ == '__main__':
-    CreateCommand(schema)
+    CreateCommand(schema).execute()
     unittest.main()
