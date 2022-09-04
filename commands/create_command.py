@@ -1,4 +1,5 @@
 from commands.Icommand import ICommand
+from commands.status import Status
 import os, json, sys
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 sys.path.append(parent_dir)
@@ -6,24 +7,27 @@ from schema_keys import SchemaKeys
 
 class CreateCommand(ICommand):
     def __init__(self, schema_path):
-        self.__validate_and_load_schema(schema_path)
+        self.schema_path = schema_path
 
-    def __validate_and_load_schema(self, schema_path):
-        if (schema_path == None or not os.path.exists(os.path.join(parent_dir, schema_path))):
-            raise Exception("FileNotFound")
+    def __validate_and_load_schema(self):
+        if (self.schema_path == None or not os.path.exists(os.path.join(parent_dir, self.schema_path))):
+            return Status.FileNotFound
 
         try:  
-            self.data = json.load(open(schema_path, "r"))
+            self.data = json.load(open(self.schema_path, "r"))
         except:
-            raise Exception("ErrorLoadingJsonFile")
+            return Status.ErrorLoadingJsonFile
 
         if not SchemaKeys.DATABASE in self.data:
-            raise Exception("DatabaseNameIsMissing")
+            return Status.DatabaseNameIsMissing
         
-    def execute(self):    
+    def execute(self): 
+        status = self.__validate_and_load_schema()   
+        if (status != None):
+            return status
         self.__create_database()
         self.__create_tables()
-        return "Succefully executed create command"
+        return Status.SUCCESS
 
     def __create_database(self):
         dir = self.data[SchemaKeys.DATABASE]
