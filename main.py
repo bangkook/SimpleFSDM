@@ -1,15 +1,15 @@
 from parse_input import parse_args
 from commands.command_factory import CommandFactory
 from commands.command_output import CommandOutput
-from commands.status import Status
+import json
 
 if __name__ == "__main__":
-   args = parse_args()
-   command = CommandFactory().create(args)
-   status = command.execute()
-   command_output = None
-   if status == Status.SUCCESS:
-      command_output = CommandOutput.success(args.command.lower())
-   else:
-      command_output = CommandOutput.failure(status)
-   print(command_output)
+   try:
+      args = parse_args()
+      command = CommandFactory().create(args)
+      result = command.execute()
+      command_output = CommandOutput(command=args.command, result=result)
+   except Exception as e:
+      command_output = CommandOutput(command=args.command, exception=e)
+
+   print(json.dumps(command_output.__dict__))
