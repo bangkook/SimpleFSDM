@@ -4,5 +4,7 @@ class Status(Enum):
     SUCCESS = 0
     FileNotFound = 1
     ErrorLoadingFile = 2
-    DatabaseNameIsMissing = 3
+    MissingDataError = 3
+    InvalidParameterError = 4
+    MissingParameterError = 5
     

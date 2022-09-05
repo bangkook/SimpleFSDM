@@ -12,15 +12,15 @@ class CreateCommand(ICommand):
 
     def __validate_and_load_schema(self):
         if (self.schema_path == None or not os.path.exists(os.path.join(parent_dir, self.schema_path))):
-            raise FileNotFound()
+            raise FileNotFound("Schema path not found")
         try:  
             with open (self.schema_path, "r") as schema_file:
                 self.data = json.load(schema_file)
         except:
-            raise ErrorLoadingFile()
+            raise ErrorLoadingFile("Error loading Json file")
 
         if not SchemaKeys.DATABASE in self.data:
-            raise DatabaseNameIsMissing()
+            raise MissingDataError("Database name is missing")
         
     def execute(self):  
         self.__create_database()
