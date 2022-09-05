@@ -3,7 +3,7 @@ import json
 import os, sys
 root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 sys.path.append(root_dir)
-from SchemaKeys import SchemaKeys
+from Schema_Keys import Schema_Keys
 sys.path.append(os.path.join(root_dir, "commands"))
 from commands.create_command import CreateCommand
 
