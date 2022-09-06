@@ -1,13 +1,5 @@
 name: test
-on:
-  push:
-    branches:
-      - main
-      - my-feature
-  pull_request:
-    branches:
-      - main
-      - my-feature
+on: [push]
 
 jobs:
   build:
