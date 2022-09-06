@@ -3,10 +3,10 @@ import json
 import os, sys
 root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 sys.path.append(root_dir)
-from schema_keys import SchemaKeys
+from commands.schema_keys import SchemaKeys
 from commands.create_command import CreateCommand
 
-schema_path = os.path.join(root_dir, "schema.json")
+schema_path = os.path.join(root_dir, os.path.join("tests", "schema.json"))
 
 class Test_TestCommands(unittest.TestCase):
     def test_wrong_input(self):

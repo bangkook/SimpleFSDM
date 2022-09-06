@@ -1,5 +1,5 @@
-from commands.status import Status
-from commands.exceptions import *
+from response.status import Status
+from response.exceptions import *
 
 class CommandOutput:
     def __init__(self, command, result=None, exception=None):

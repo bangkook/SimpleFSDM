@@ -1,4 +1,4 @@
-from commands.status import Status
+from response.status import Status
 
 class FileNotFound(Exception):
     def __init__(self, message):

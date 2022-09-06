@@ -1,9 +1,9 @@
 from commands.Icommand import ICommand
-from commands.exceptions import *
-import os, json, sys
+from response.exceptions import *
+import os, json
+from commands.schema_keys import SchemaKeys
+
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
-sys.path.append(parent_dir)
-from schema_keys import SchemaKeys
 
 class CreateCommand(ICommand):
     def __init__(self, schema_path):
