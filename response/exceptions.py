@@ -24,3 +24,9 @@ class MissingParameterError(Exception):
     def __init__(self, message):
         self.status = Status.MissingParameterError
         super().__init__(message)
+
+class ColumnsNotExistInSchema(Exception):
+    def __init__(self, message):
+        self.status = Status.ColumnsNotExistInSchema
+        super().__init__(message)
+
