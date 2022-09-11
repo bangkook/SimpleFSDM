@@ -2,7 +2,6 @@ from commands.Icommand import ICommand
 from response.exceptions import *
 import os, json
 from commands.schema_keys import SchemaKeys
-from typing import TextIO
 
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 
@@ -41,17 +40,3 @@ class CreateCommand(ICommand):
         for table in self.data[SchemaKeys.TABLES]:
             t_path = os.path.join(path, table[SchemaKeys.NAME])
             os.makedirs(t_path, exist_ok = True)
-
-    def create_table_schema(self, t_path, table):
-        file: TextIO = open(os.path.join(t_path, table[SchemaKeys.NAME] + " schema.json"), 'w')
-        json.dump(table, file)
-        file.close()
-
-    def create_indices(self, t_path, table):
-        j_object = {"indices": []}
-        for index in table[SchemaKeys.INDEX_KEYS]:
-            dic = {"name": index, "values": []}
-            j_object["indices"].append(dic)
-        file = open(os.path.join(t_path, table[SchemaKeys.NAME] + " indices.json"), 'w')
-        json.dump(j_object, file)
-        file.close()
