@@ -29,6 +29,10 @@ class CreateCommand(ICommand):
     def execute(self):
         self.__create_database()
         self.__create_tables()
+        for table in self.data[SchemaKeys.TABLES]:
+            t_path = os.path.join(self.path, table[SchemaKeys.NAME])
+            self.create_table_schema(t_path, table)
+            self.create_indices(t_path, table)
 
     def __create_database(self):
         dir = self.data[SchemaKeys.DATABASE]
