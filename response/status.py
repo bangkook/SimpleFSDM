@@ -7,4 +7,4 @@ class Status(Enum):
     MissingDataError = 3
     InvalidParameterError = 4
     MissingParameterError = 5
-    
+    ColumnsNotExistInSchema = 6
