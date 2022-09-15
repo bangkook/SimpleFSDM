@@ -18,7 +18,7 @@ class GetCommand(Icommand):
             if db in file_list:
                 found = True                    #db found
             else:
-                raise DatabaseNotExist("Database doesn't exist")
+                raise DatabaseNotExist("Database not found")
                 return None
         if found:
             dict = json.loads(db)
@@ -29,7 +29,7 @@ class GetCommand(Icommand):
                     foundT = True
                 
                 if(~foundT):
-                    raise TableNotExist("Table name not found")
+                    raise TableNotExist("Table not found")
                     return None
         
         #db and table found
