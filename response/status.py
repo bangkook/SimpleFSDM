@@ -8,3 +8,6 @@ class Status(Enum):
     InvalidParameterError = 4
     MissingParameterError = 5
     ColumnsNotExistInSchema = 6
+    DatabaseNotExist = 7
+    TabelNotExist = 8
+    ValueNotExist = 9
