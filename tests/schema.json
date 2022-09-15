@@ -22,6 +22,7 @@
         {
             "name" : "Planes_Details",
             "columns" : ["Plane_id", "Plane type", "Seat map"],
+            "Index_keys" : ["Plane type"],
             "primary_key"  : "Plane_id",
             "Consistency" : "Eventual"
         },
