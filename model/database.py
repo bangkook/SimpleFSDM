@@ -1,5 +1,3 @@
-from genericpath import exists
-from re import S
 from model.table import *
 
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
@@ -20,11 +18,8 @@ class Database:
         return self.__path
 
     def serialize(self):
-        self.__serialize_database()
-        self.__serialize_tables()
-
-    def __serialize_database(self):
         os.makedirs(self.__path, exist_ok=True)
+        self.__serialize_tables()
 
     def __create_tables(self):
         tables = []

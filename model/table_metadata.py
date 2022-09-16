@@ -6,16 +6,18 @@ class TableMetaData:
         self.table_name = table_schema[SchemaKeys.NAME]
         self.primary_key = table_schema[SchemaKeys.PRIMARY_KEY]
         self.columns = table_schema[SchemaKeys.COLUMNS]
-        self.path = table_object.get_path()
+        self.__path = table_object.get_path()
         self.indeces = self.__create_indices()
         
-
+    def get_path(self):
+        return self.__path
+        
     def serialize(self):
         self.__serialize_table_schema()
         self.__serialize_indices()
 
     def __serialize_table_schema(self):
-        with open(os.path.join(self.path, self.table_name + FILE_EXTENSION), 'w') as file:
+        with open(os.path.join(self.__path, self.table_name + FILE_EXTENSION), 'w') as file:
             json.dump(self.__table_schema, file)
 
     def __create_indices(self):

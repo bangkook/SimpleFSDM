@@ -1,8 +1,8 @@
 from commands.Icommand import ICommand
 from model.database import Database
+from model.schema_keys import SchemaKeys
 from response.exceptions import *
 import os, json
-from commands.schema_keys import SchemaKeys
 
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 

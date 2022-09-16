@@ -6,11 +6,8 @@ class Table:
         self.__table_metadata = TableMetaData(table, self)
 
     def serialize(self):
-        self.__serialize_table()
+        os.makedirs(self.__path, exist_ok=True)
         self.__table_metadata.serialize()
 
     def get_path(self):
         return self.__path
-
-    def __serialize_table(self):
-        os.makedirs(self.__path, exist_ok=True)

@@ -8,4 +8,3 @@ class SchemaKeys(ABC):
     PRIMARY_KEY = "primary_key"
     INDEX_KEYS = "Index_keys"
     CONSISTENCY = "consistency"
-    PATH = "path"
