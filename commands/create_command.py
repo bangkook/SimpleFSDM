@@ -1,7 +1,8 @@
 from commands.Icommand import ICommand
+from model.database import Database
+from model.schema_keys import SchemaKeys
 from response.exceptions import *
 import os, json
-from commands.schema_keys import SchemaKeys
 
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 
@@ -15,28 +16,11 @@ class CreateCommand(ICommand):
             raise FileNotFound("Schema path not found")
         try:  
             with open (self.schema_path, "r") as schema_file:
-                self.data = json.load(schema_file)
+                self.database_obj = json.load(schema_file)
         except:
             raise ErrorLoadingFile("Error loading Json file")
 
-        if not SchemaKeys.DATABASE in self.data:
-            raise MissingDataError("Database name is missing")
         
     def execute(self):  
-        self.__create_database()
-        self.__create_tables()
-
-    def __create_database(self):
-        dir = self.data[SchemaKeys.DATABASE]
-        path = os.path.join(parent_dir, dir)
-        os.makedirs(path, exist_ok = True)
-
-    def __create_tables(self):
-        if not SchemaKeys.TABLES in self.data:
-            return
-
-        path = os.path.join(parent_dir, self.data[SchemaKeys.DATABASE])
-
-        for table in self.data[SchemaKeys.TABLES]:
-            t_path = os.path.join(path, table[SchemaKeys.NAME])
-            os.makedirs(t_path, exist_ok = True)
+        database = Database(self.database_obj)
+        database.serialize()
