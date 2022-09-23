@@ -18,7 +18,7 @@ class GetAPI(ICommand):
      file_list = os.listdir(pd)
      if db not in file_list:
          raise InvalidParameterError("database not found")
-     if Table not in GetAPI.get_data(db):
+     if table not in GetAPI.get_data(db):
          raise InvalidParameterError("table not found")
      if value not in GetAPI.get_data(db).values():
          raise InvalidParameterError("value not found")
@@ -29,14 +29,14 @@ class GetAPI(ICommand):
         data = json.load(f)
         return data
 
-    def execute(db, table, value, files=None):
+    def execute(db, table, value):
         if db != "":
             if table != "":
                 return GetAPI.get_data(db)[value]
             else:
                 return GetAPI.get_data(db)
         else:
-            files[]
+            files = []
             for file in os.listdir(pd):
                 files.append(os.path.join(pd, file))
             for file in files:
