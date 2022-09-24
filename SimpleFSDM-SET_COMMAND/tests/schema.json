@@ -1,0 +1,42 @@
+
+{
+    "database_name" : "Check-in",
+
+    "Tables" : [
+        {
+            "name" : "Reservations",
+            "columns" : ["First_name", "Last_name", "id", "Seat", "Phone", 
+            "Passport_no", "Gender", "Birth_date", "Flight_id"],
+            "primary_key"  : "id",
+            "Index_keys" : ["First_name", "Last_name"],
+            "Consistency" : "Eventual",
+             "overwrite" : "False"
+        },
+        {
+            "name" : "Flights_Details",
+            "columns" : ["Flight_id", "Plane_id", "From", "To", "Stops", "Airline_name", 
+            "Departure_time", "Departure_date", "Flight_duration"],
+            "primary_key"  : "Flight_id",
+            "Index_keys" : ["From", "To", "plane_id", "Airline_name"],
+            "Consistency" : "Eventual",
+             "overwrite" : "False"
+        },
+        {
+            "name" : "Planes_Details",
+            "columns" : ["Plane_id", "Plane_type", "Seat_map"],
+            "Index_keys" : ["Plane_type"],
+            "primary_key"  : "Plane_id",
+            "Consistency" : "Eventual",
+             "overwrite" : "False"
+        },
+        {
+            "name" : "Flights_seats",
+            "columns" : ["Flight_id_seat_no", "id"],
+            "primary_key"  : "Flight_id_seat_no",
+            "Index_keys" : ["id"],
+            "Consistency" : "Strong",
+             "overwrite" : "False"
+        }
+    
+    ]
+}        
