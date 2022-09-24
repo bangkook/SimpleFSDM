@@ -1,4 +1,6 @@
-from model.table_metadata import *
+from table_metadata import *
+from row import *
+from response.exceptions import *
 
 
 class Table:
@@ -19,55 +21,43 @@ class Table:
     def get_path(self):
         return self.__path__
 
-    # Will be implemented later in the project
-    def __serialize_row__(self, data):
-        primary_key = self.__table_metadata__.primary_key
-        can_overwrite = eval(self.__table_metadata__.overwrite)
-        path = self.get_row_path(data[primary_key])
-        mode = 'w' if can_overwrite else 'x'
-        with open(path, mode) as file:
-            json.dump(data, file)
-        return os.path.basename(path).replace(".json", "")
+    def __get_data_path__(self):
+        return os.path.join(self.__path, "data")
 
-    def get_row_path(self, primary_key):
-        return os.path.join(self.__path__, "{}.json".format(primary_key))
+    def get_primary_key(self):
+        return self.__table_metadata.primary_key
+
+    def __get_primary_key_from_path(self, path):
+        return str(path).replace(self.__path, '').replace(".json", '').replace("data", '')
+
+    def overwrite(self):
+        return self.__table_metadata.overwrite
+
+    def get_indices(self):
+        return self.__table_metadata.index_keys
 
     def set(self, data):
-        primary_key = data[self.__table_metadata__.primary_key]
+        primary_key = data.get(self.get_primary_key())
         existing_row = None
         if primary_key is not None:
             existing_row = self.get_by_primary_key(primary_key)
         try:
-            self.delete(existing_row)
-            primary_key = self.__serialize_row__(data)
-            Table.add_to_index(data, self.__table_metadata__.index_keys, primary_key)
-        except:
-            raise WrongParameterError("data exists")
-
-    @staticmethod
-    def delete_index(data, indices, primary_key):
-        for index in indices:
-            if index in data:
-                indices[index].remove_value(data[index], primary_key)
-
-    @staticmethod
-    def add_to_index(data, indices, primary_key):
-        for index in indices:
-            if index in data:
-                indices[index].add_value(data[index], primary_key)
-
-    def delete(self, data):
-        if data is None:
-            return
-        primary_key = data[self.__table_metadata__.primary_key]
-        Table.delete_index(data, self.__table_metadata__.index_keys, primary_key)
-        pass
-
-    def get(self):
-        pass
+            row = Row(self, data)
+            row.serialize()
+            existing_row.delete_index() if existing_row else None
+        except Exception:
+            raise OverwriteError("data exists")
 
     def get_by_primary_key(self, primary_key):
-        path = os.path.join(self.__path__, "{}.json".format(primary_key))
-        if os.path.exists(path):
-            with open(path, 'r') as file:
-                return json.load(file)
+        path = self.__get_primary_key_path(primary_key)
+        if path is None or not os.path.isfile(path):
+            return None
+        with open(path, 'r') as file:
+            data = json.load(file)
+        return Row(self, data)
+
+    def __get_primary_key_path(self, primary_key):
+        path = os.path.join(self.__get_data_path(), "{}.json".format(primary_key))
+        if os.path.isfile(path):
+            return path
+        return None

@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class Status(Enum):
     SUCCESS = 0
     FileNotFound = 1
@@ -7,4 +8,4 @@ class Status(Enum):
     MissingDataError = 3
     InvalidParameterError = 4
     MissingParameterError = 5
-    
+    OverwriteError = 6

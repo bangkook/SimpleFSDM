@@ -1,4 +1,4 @@
-from response.status import Status
+from status import *
 
 
 class FileNotFound(Exception):
@@ -28,4 +28,10 @@ class InvalidParameterError(Exception):
 class MissingParameterError(Exception):
     def __init__(self, message):
         self.status = Status.MissingParameterError
+        super().__init__(message)
+
+
+class OverwriteError(Exception):
+    def __init__(self, message):
+        self.status_code = Status.OverwriteError.name
         super().__init__(message)

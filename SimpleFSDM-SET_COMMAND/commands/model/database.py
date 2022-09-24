@@ -1,16 +1,18 @@
-import table
+from table import Table
 import os
+from schema_keys import *
+from response.exceptions import *
 
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 
 
 class Database:
-    def __init__(self, database_obj):
-        Database.__validate(database_obj)
-        self.__database_obj = database_obj
-        self.name = database_obj[SchemaKeys.DATABASE_NAME]
-        self.__path = os.path.join(parent_dir, self.name)
-        self.tables = self.__create_tables()
+    def __init__(self, database_obj=None, database_name=None):
+        Database.__validate(database_obj, database_name)
+        if database_obj is not None:
+            self.__initialize_by_schema_data__(database_obj)
+        else:
+            self.__initialize_by_database_name__(database_name)
 
     def __validate(database_obj):
         if not SchemaKeys.DATABASE_NAME in database_obj or str(SchemaKeys.DATABASE_NAME).isspace():
@@ -36,7 +38,7 @@ class Database:
 
     def get_table(self, table_name):
         if table_name not in self.tables:
-            raise WrongParameterError("Wrong table entered")
+            raise InvalidParameterError ("Invalid table is entered")
         return self.tables[table_name]
 
     def set(self, table_name, data):

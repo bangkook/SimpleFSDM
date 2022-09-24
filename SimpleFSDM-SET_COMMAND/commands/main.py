@@ -1,5 +1,5 @@
 from parse_input import parse_args
-from commands.command_factory import CommandFactory
+from command_factory import CommandFactory
 from response.command_output import CommandOutput
 import json
 
