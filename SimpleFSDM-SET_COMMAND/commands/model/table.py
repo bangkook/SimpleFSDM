@@ -5,21 +5,21 @@ from response.exceptions import *
 
 class Table:
     def __init__(self, database, table_name, table_schema=None):
-        self.__path__ = os.path.join(database.get_path(), table_name)
+        self.__path = os.path.join(database.get_path(), table_name)
         if table_schema is None:
-            table_schema = TableMetaData.load_table_schema(self.__path__, table_name)
+            table_schema = TableMetaData.get_table_schema(self.__path, table_name)
         self.table_schema = table_schema
         self.__table_metadata__ = TableMetaData(self)
 
     def serialize(self):
-        os.makedirs(self.__path__, exist_ok=True)
+        os.makedirs(self.__path, exist_ok=True)
         self.__table_metadata__.serialize()
 
     def get_name(self):
         return self.__table_metadata__.name
 
     def get_path(self):
-        return self.__path__
+        return self.__path
 
     def __get_data_path__(self):
         return os.path.join(self.__path, "data")

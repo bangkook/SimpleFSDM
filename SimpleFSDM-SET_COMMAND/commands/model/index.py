@@ -13,7 +13,7 @@ class Index:
         return self.__path
 
     @staticmethod
-    def __validate_index__(index_name, table_columns):
+    def __validate_index(index_name, table_columns):
         if index_name not in table_columns:
             raise InvalidParameterError("Index {} not found".format(index_name))
 
