@@ -12,7 +12,7 @@ class Table:
         self.__table_metadata__ = TableMetaData(self)
 
     def serialize(self):
-        os.makedirs(self.__path, exist_ok=True)
+        os.makedirs(self.__get_data_path__, exist_ok=True)
         self.__table_metadata__.serialize()
 
     def get_name(self):

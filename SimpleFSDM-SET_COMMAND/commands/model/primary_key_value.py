@@ -3,8 +3,7 @@ from index import *
 
 class PrimaryKeyIndex(Index):
     def __init__(self, primary_key_name, table_metadata):
-        super().name = primary_key_name
-        super().__path = table_metadata.get_path()
+        super().__init__(primary_key_name, table_metadata)
 
     def add_value(self):
         pass
