@@ -4,7 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="855ac170-0228-48a4-adf1-8b765573f58d" name="Changes" comment="fix" />
+    <list default="true" id="855ac170-0228-48a4-adf1-8b765573f58d" name="Changes" comment="fix">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleFSDM" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleFSDM-SET_COMMAND/commands/model/table_metadata.py" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleFSDM-SET_COMMAND/commands/model/table_metadata.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleFSDM-SET_COMMAND/commands/set.py" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleFSDM-SET_COMMAND/commands/set_command.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commands/Icommand.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commands/command_factory.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commands/create_command.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/database.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/index.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/schema_keys.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/table.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/table_metadata.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/parse_input.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/response/command_output.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/response/exceptions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/response/status.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/schema.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_create.py" beforeDir="false" />
+    </list>
     <list id="d89a71d9-f2d9-4385-9ac2-b6d7e7c232ac" name="Changes by pc" comment="Changes by pc" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,16 +51,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "last_opened_file_path": "C:/Users/20100/Documents/GitHub/SimpleFSDM/model"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/20100/Documents/GitHub/SimpleFSDM/model&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\20100\Documents\GitHub\SimpleFSDM\model" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\20100\Documents\GitHub\SimpleFSDM\commands" />
       <recent name="C:\Users\20100\Documents\GitHub\SimpleFSDM\SimpleFSDM-SET_COMMAND\commands" />
       <recent name="C:\Users\20100\Documents\GitHub\SimpleFSDM\SimpleFSDM-SET_COMMAND\commands\model" />
     </key>
