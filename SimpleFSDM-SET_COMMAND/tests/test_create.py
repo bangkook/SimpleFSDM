@@ -1,16 +1,18 @@
-import unittest   # The test framework
 import json
-import os, sys
-root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
-sys.path.append(root_dir)
+import os
+import sys
+import unittest
 from model.schema_keys import SchemaKeys
 from commands.create_command import CreateCommand
 
+root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 schema_path = os.path.join(root_dir, os.path.join("tests", "schema.json"))
+sys.path.append(root_dir)
+
 
 class Test_TestCommands(unittest.TestCase):
     def test_wrong_input(self):
-        wrong_schema = "schima.json"
+        wrong_schema = "schema.json"
         self.assertRaises(Exception, CreateCommand, wrong_schema)
 
     def test_no_input(self):
@@ -20,11 +22,11 @@ class Test_TestCommands(unittest.TestCase):
         db_name = "Check-in"
         db_path = os.path.join(root_dir, db_name)
         self.assertEqual(os.path.exists(db_path), True)
-        
+
     def test_create_tables(self):
         db_path = os.path.join(root_dir, "Check-in")
         data = None
-        with open (schema_path, "r") as schema_file:
+        with open(schema_path, "r") as schema_file:
             data = json.load(schema_file)
         for table in data[SchemaKeys.TABLES]:
             table_path = os.path.join(db_path, table[SchemaKeys.NAME])
@@ -43,6 +45,7 @@ class Test_TestCommands(unittest.TestCase):
         for i in range(3):
             CreateCommand(schema_path).execute()
             self.assertEqual(os.path.exists(db_path), True)
+
 
 if __name__ == '__main__':
     CreateCommand(schema_path).execute()
