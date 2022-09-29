@@ -2,8 +2,8 @@ import json
 import os
 import sys
 import unittest
-from model.schema_keys import SchemaKeys
-from commands.create_command import CreateCommand
+from schema_keys import SchemaKeys
+from commands.create_command import *
 
 root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 schema_path = os.path.join(root_dir, os.path.join("tests", "schema.json"))
