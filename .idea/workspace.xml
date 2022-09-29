@@ -4,8 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="855ac170-0228-48a4-adf1-8b765573f58d" name="Changes" comment="fix">
+    <list default="true" id="855ac170-0228-48a4-adf1-8b765573f58d" name="Changes" comment="try">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleFSDM-SET_COMMAND/model/database.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleFSDM-SET_COMMAND/model/file_mode.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleFSDM-SET_COMMAND/model/index.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleFSDM-SET_COMMAND/model/index_value.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleFSDM-SET_COMMAND/model/primary_key_value.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleFSDM-SET_COMMAND/model/response/command_output.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleFSDM-SET_COMMAND/model/response/exceptions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleFSDM-SET_COMMAND/model/response/status.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleFSDM-SET_COMMAND/model/row.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleFSDM-SET_COMMAND/model/schema_keys.py" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleFSDM-SET_COMMAND/commands/schema_keys.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleFSDM-SET_COMMAND/model/table.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleFSDM-SET_COMMAND/model/table_metadata.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleFSDM-SET_COMMAND/tests/schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleFSDM-SET_COMMAND/commands/schema.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleFSDM-SET_COMMAND/tests/schema_keys.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleFSDM-SET_COMMAND/tests/test_create.py" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleFSDM-SET_COMMAND/commands/test_create.py" afterDir="false" />
     </list>
     <list id="d89a71d9-f2d9-4385-9ac2-b6d7e7c232ac" name="Changes by pc" comment="Changes by pc" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,8 +62,8 @@
       <recent name="C:\Users\20100\Documents\GitHub\SimpleFSDM\model" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\20100\Documents\GitHub\SimpleFSDM\commands" />
       <recent name="C:\Users\20100\Documents\GitHub\SimpleFSDM\SimpleFSDM-SET_COMMAND\commands" />
+      <recent name="C:\Users\20100\Documents\GitHub\SimpleFSDM\commands" />
       <recent name="C:\Users\20100\Documents\GitHub\SimpleFSDM\SimpleFSDM-SET_COMMAND\commands\model" />
     </key>
   </component>
@@ -119,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664419145003</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="try">
+      <created>1664469125072</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1664469125072</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -136,6 +158,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Changes by pc" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="try" />
+    <option name="LAST_COMMIT_MESSAGE" value="try" />
   </component>
 </project>
